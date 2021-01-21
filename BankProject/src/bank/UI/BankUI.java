@@ -180,6 +180,7 @@ public class BankUI extends javax.swing.JFrame {
         a que la tabla tiene habilitada la opcion de autoresize. Deshabilitando
         esta opcion, aparecera sin problemas la barra horizontal.
 	 */
+        limpiarTabla();
 	BankTextController control = new BankTextController();
 	tablaBanco.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	tablaBanco.doLayout();
@@ -214,6 +215,11 @@ public class BankUI extends javax.swing.JFrame {
 		modelo.setValueAt(lista[i][j], i, j);
 	}
 
+    }
+
+    public void limpiarTabla(){
+        modelo.setColumnCount(0);
+        modelo.setRowCount(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
