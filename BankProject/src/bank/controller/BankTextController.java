@@ -37,18 +37,21 @@ public class BankTextController {
     }
 
     public String[] getHeader() {
-        String[] header = {"ID", "First Name", "Last Name", "Accounts"};
+        String[] header = {"ID", "First Name", "Last Name", "Account", "Balance"};
         return header;
     }
 
     //Recibe un hashTable y busca una key, si existe, regresa una tabla con
     //la informacion del resultado de la busqueda. Si no existe, regresa
     //un apuntador null
+    final int ROWS = 3;
+    final int COLUMNS = 5;
+    final int COLUMN_BALANCE = 4;
+    final int COLUMN_ACCOUNT = 3;
     public String[][] getHashTable(String key) {
-        int j;
         BankTextReader bankBuilder = new BankTextReader();
         Hashtable<String, String> input = bankBuilder.bankHashReader("Bank.txt");
-        String[][] output = {{" ", " ", " ", " "}};
+        String[][] output = new String[ROWS][COLUMNS];
         //Si existe el elemento
         if (input.containsKey(key)) {
             String line;
@@ -59,16 +62,21 @@ public class BankTextController {
             //y lo divide en los elementos necesarios para mostrarlo en una tabla
             split = line.split(",");
             //colocandolos en la matriz output
-            for (j = 0; j < 3; j++) {
+            for (int j = 0; j < ROWS; j++) {
                 output[0][j] = split[j];
+                output[1][j] = split[j];
+                output[2][j] = split[j];
             }
-            //acomoda todos los IDAccount en un solo elemento de la matriz
-            accounts = split[3];
-            for (j = 6; j < split.length; j++) {
-                accounts = accounts + ", " + split[j];
-                j = j + 2;
+
+            int indexFirstAccount = 5;
+            int indexFirstBalance = 4;
+            int nextItem = 3;
+            for (int currRow = 0; currRow < ROWS; currRow++) {
+                output[currRow][COLUMN_BALANCE] = split[indexFirstBalance];
+                output[currRow][COLUMN_ACCOUNT] = split[indexFirstAccount];
+                indexFirstBalance += nextItem;
+                indexFirstAccount += nextItem;
             }
-            output[0][3] = accounts;
         } //Si el elemento no existe, se devuelve null
         else {
             output = null;
