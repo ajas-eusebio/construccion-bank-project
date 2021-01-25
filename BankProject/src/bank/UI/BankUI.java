@@ -180,6 +180,7 @@ public class BankUI extends javax.swing.JFrame {
         a que la tabla tiene habilitada la opcion de autoresize. Deshabilitando
         esta opcion, aparecera sin problemas la barra horizontal.
 	 */
+        limpiarTabla();
 	BankTextController control = new BankTextController();
 	tablaBanco.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	tablaBanco.doLayout();
@@ -189,6 +190,8 @@ public class BankUI extends javax.swing.JFrame {
 	modelo.addColumn(nombres[0]);
 	modelo.addColumn(nombres[1]);
 	modelo.addColumn(nombres[2]);
+	modelo.addColumn(nombres[3]);
+	modelo.addColumn(nombres[4]);
 
 	//Funcion que retornara la matriz de strings para actualizar la matriz
 	int numFilas = lista.length;
@@ -201,7 +204,7 @@ public class BankUI extends javax.swing.JFrame {
 	}
 
 	//Funcion Para agragar cuentas a las columnas de acuerdo a cuantas columnas se necesitaran
-	int totalColumnas = numcolumnas - 3;//Num de columnas que faltan por nombrar
+	int totalColumnas = numcolumnas - 5;//Num de columnas que faltan por nombrar
 	for (int j = 1; j <= totalColumnas; j++)
 	    modelo.addColumn(nombres[3]);
 	//funcion para establecer el num de filas que abra en la tabla
@@ -214,6 +217,11 @@ public class BankUI extends javax.swing.JFrame {
 		modelo.setValueAt(lista[i][j], i, j);
 	}
 
+    }
+
+    public void limpiarTabla(){
+        modelo.setColumnCount(0);
+        modelo.setRowCount(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
