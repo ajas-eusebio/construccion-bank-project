@@ -37,7 +37,7 @@ public class BankTextController {
     }
 
     public String[] getHeader() {
-        String[] header = {"ID", "First Name", "Last Name", "Account", "Balance"};
+        String[] header = {"ID", "Nombre", "Apellido", "Cuenta", "Saldo"};
         return header;
     }
 
@@ -55,7 +55,6 @@ public class BankTextController {
         //Si existe el elemento
         if (input.containsKey(key)) {
             String line;
-            String accounts;
             String[] split;
             //Recibe la linea del .txt correspondiente
             line = input.get(key);
