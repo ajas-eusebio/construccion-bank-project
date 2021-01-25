@@ -1,3 +1,6 @@
 # archivos .class
 /*.class
 *.class
+/BankProject/nbproject/private/
+/BankProject/build/
+/BankProject/dist/
